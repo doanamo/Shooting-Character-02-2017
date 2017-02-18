@@ -1,3 +1,9 @@
+# Unity Engine
 Library/
 Build/
 Temp/
+
+# Visual Studio
+.vs/
+*.csproj
+*.sln
