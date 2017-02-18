@@ -163,8 +163,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_camera: {fileID: 1580687670}
   m_target: {fileID: 1744529892}
-  m_cameraOffset: {x: 0, y: 12, z: -6}
-  m_targetOffset: {x: 0, y: 0, z: -0}
+  m_cameraDistance: 12
+  m_cameraDirection: {x: -30, y: 0, z: 0}
+  m_targetAnchor: {x: 0, y: 0.5, z: 0}
+  m_minimumDistance: 3
+  m_maximumDistance: 20
 --- !u!1 &762550147
 GameObject:
   m_ObjectHideFlags: 0
@@ -305,7 +308,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1580687670}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: -10}
+  m_LocalPosition: {x: 0, y: 4, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 762550148}
