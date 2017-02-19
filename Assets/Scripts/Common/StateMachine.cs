@@ -1,4 +1,6 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 public abstract class State
 {
@@ -30,35 +32,35 @@ public class StateMachine
 
     public bool ChangeState(State state)
     {
-        if(currentState != null)
+        if(this.currentState != null)
         {
-            if(!currentState.OnExit(state))
+            if(!this.currentState.OnExit(state))
                 return false;
         }
 
         if(state != null)
         {
-            if(!state.OnEnter(currentState))
+            if(!state.OnEnter(this.currentState))
                 return false;
         }
 
-        currentState = state;
+        this.currentState = state;
         return true;
     }
 
     public void HandleMessage<Type>(Type message)
     {
-        if(currentState != null)
+        if(this.currentState != null)
         {
-            currentState.HandleMessage(message);
+            this.currentState.HandleMessage(message);
         }
     }
 
     public void Update()
     {
-        if(currentState != null)
+        if(this.currentState != null)
         {
-            currentState.OnUpdate();
+            this.currentState.OnUpdate();
         }
     }
 }
