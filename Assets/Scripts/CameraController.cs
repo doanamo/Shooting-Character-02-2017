@@ -14,7 +14,7 @@ public class CameraController : MonoBehaviour
     public float m_minimumDistance;
     public float m_maximumDistance;
 
-    void Update()
+    public void Update()
     {
         // Control camera distance using the mouse wheel.
         // Todo: Implement proper smoothing with varying speed depending on the distance.
@@ -22,7 +22,7 @@ public class CameraController : MonoBehaviour
         m_cameraDistance = Mathf.Clamp(m_cameraDistance, m_minimumDistance, m_maximumDistance);
     }
 
-    void LateUpdate()
+    public void LateUpdate()
     {
         // Calculate position of the camera.
         Vector3 targetPosition = m_target.transform.position + m_targetAnchor;
