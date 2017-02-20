@@ -57,7 +57,7 @@ public class MovingState : State
         if(receivedCommand)
         {
             // Accelerate the character's rigidbody.
-            this.rigidbody.AddForce(this.command.direction * 3.0f - this.rigidbody.velocity, ForceMode.VelocityChange);
+            this.rigidbody.AddForce(this.command.direction * 6.0f - this.rigidbody.velocity, ForceMode.VelocityChange);
             this.receivedCommand = false;
         }
         else
