@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class CharacterLogic : MonoBehaviour
 {
+    public CharacterController controller;
+
     public StateMachine stateMachine;
     public StandingState standingState;
     public MovingState movingState;
 
     private void Start()
     {
+        this.controller = GetComponent<CharacterController>();
+
         this.stateMachine = new StateMachine();
         this.standingState = new StandingState(this);
         this.movingState = new MovingState(this);
@@ -26,5 +30,8 @@ public class CharacterLogic : MonoBehaviour
     private void FixedUpdate()
     {
         this.stateMachine.Update();
+
+        // Apply gravity to the character controller.
+        this.controller.Move(Physics.gravity * Time.fixedDeltaTime);
     }
 }

@@ -40,7 +40,7 @@ public class MovingState : State
     public MovingState(CharacterLogic character)
     {
         this.character = character;
-        this.controller = character.GetComponent<CharacterController>();
+        this.controller = character.controller;
     }
 
     public override void HandleMessage<Type>(Type message)
@@ -56,18 +56,22 @@ public class MovingState : State
     {
         if(receivedCommand)
         {
-            // Accelerate the character's rigidbody.
-            this.controller.SimpleMove(this.command.direction * 6.0f);
+            // Move the character in a direction.
+            Vector3 motion = Vector3.zero;
+
+            if(this.controller.isGrounded)
+            {
+                motion = this.command.direction;
+                motion *= 6.0f;
+            }
+
+            this.controller.Move(motion * Time.fixedDeltaTime);
             this.receivedCommand = false;
         }
         else
         {
-            // Deaccelerate the character's rigidbody.
-            //float velocityMagnitude = Mathf.Min(this.rigidbody.velocity.magnitude, 10.0f * Time.fixedDeltaTime);
-            //this.rigidbody.AddForce(-this.rigidbody.velocity.normalized * velocityMagnitude, ForceMode.VelocityChange);
-
             // Change to the standing state once velocity reaches zero.
-            if(this.controller.velocity.magnitude <= Mathf.Epsilon)
+            if(this.controller.isGrounded && this.controller.velocity.magnitude <= Mathf.Epsilon)
             {
                 if(this.character.stateMachine.ChangeState(this.character.standingState))
                     return;
