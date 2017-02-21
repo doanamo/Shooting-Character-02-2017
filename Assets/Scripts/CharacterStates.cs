@@ -32,7 +32,7 @@ public class StandingState : State
 public class MovingState : State
 {
     private CharacterLogic character;
-    private Rigidbody rigidbody;
+    private CharacterController controller;
 
     private MoveCommand command;
     private bool receivedCommand;
@@ -40,7 +40,7 @@ public class MovingState : State
     public MovingState(CharacterLogic character)
     {
         this.character = character;
-        this.rigidbody = character.GetComponent<Rigidbody>();
+        this.controller = character.GetComponent<CharacterController>();
     }
 
     public override void HandleMessage<Type>(Type message)
@@ -57,17 +57,17 @@ public class MovingState : State
         if(receivedCommand)
         {
             // Accelerate the character's rigidbody.
-            this.rigidbody.AddForce(this.command.direction * 6.0f - this.rigidbody.velocity, ForceMode.VelocityChange);
+            this.controller.SimpleMove(this.command.direction * 6.0f);
             this.receivedCommand = false;
         }
         else
         {
             // Deaccelerate the character's rigidbody.
-            float velocityMagnitude = Mathf.Min(this.rigidbody.velocity.magnitude, 10.0f * Time.fixedDeltaTime);
-            this.rigidbody.AddForce(-this.rigidbody.velocity.normalized * velocityMagnitude, ForceMode.VelocityChange);
+            //float velocityMagnitude = Mathf.Min(this.rigidbody.velocity.magnitude, 10.0f * Time.fixedDeltaTime);
+            //this.rigidbody.AddForce(-this.rigidbody.velocity.normalized * velocityMagnitude, ForceMode.VelocityChange);
 
             // Change to the standing state once velocity reaches zero.
-            if(this.rigidbody.velocity.magnitude <= Mathf.Epsilon)
+            if(this.controller.velocity.magnitude <= Mathf.Epsilon)
             {
                 if(this.character.stateMachine.ChangeState(this.character.standingState))
                     return;
