@@ -20,8 +20,8 @@ namespace UnityStandardAssets.ImageEffects
         SerializedProperty velocityScale;
         SerializedProperty velocityDownsample;
         SerializedProperty noiseTexture;
-        SerializedProperty showVelocity;
-        SerializedProperty showVelocityScale;
+        //SerializedProperty showVelocity;
+        //SerializedProperty showVelocityScale;
         SerializedProperty excludeLayers;
 
         void OnEnable () {
