@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CharacterLogic : MonoBehaviour
 {
+    [HideInInspector]
     public CharacterController controller;
 
     public StateMachine stateMachine;
