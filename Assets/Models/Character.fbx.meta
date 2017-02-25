@@ -153,9 +153,9 @@ ModelImporter:
     13700000: Alpha_Joints
     13700002: Alpha_Surface
   materials:
-    importMaterials: 1
-    materialName: 0
-    materialSearch: 1
+    importMaterials: 0
+    materialName: 2
+    materialSearch: 2
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
