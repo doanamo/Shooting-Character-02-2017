@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 361334168}
   - component: {fileID: 361334169}
   m_Layer: 0
-  m_Name: Interpolation Controller
+  m_Name: System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -298,7 +298,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 923947394}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &361334169
 MonoBehaviour:
@@ -319,9 +319,10 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 548294578}
+  - component: {fileID: 548294580}
   - component: {fileID: 548294579}
   m_Layer: 0
-  m_Name: Camera Controller
+  m_Name: Game
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -358,6 +359,18 @@ MonoBehaviour:
   targetAnchor: {x: 0, y: 0.5, z: 0}
   minimumDistance: 3
   maximumDistance: 20
+--- !u!114 &548294580
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 548294577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 79ce889a5eabdb440980ac831a15c717, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  character: {fileID: 1744529894}
 --- !u!1 &613257040
 GameObject:
   m_ObjectHideFlags: 0
@@ -482,7 +495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 923947394}
   m_Layer: 0
-  m_Name: Gameplay
+  m_Name: Logic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -499,7 +512,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 548294578}
-  - {fileID: 1389047707}
   - {fileID: 361334168}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -864,47 +876,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4353567698241036, guid: 3eb23ac5ae1231b429adbc15ec4c0490,
     type: 2}
   m_PrefabInternal: {fileID: 1635898896}
---- !u!1 &1389047706
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1389047707}
-  - component: {fileID: 1389047708}
-  m_Layer: 0
-  m_Name: Player Controller
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1389047707
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1389047706}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 923947394}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1389047708
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1389047706}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 79ce889a5eabdb440980ac831a15c717, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 1744529894}
 --- !u!4 &1403834116 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4353567698241036, guid: 3eb23ac5ae1231b429adbc15ec4c0490,
