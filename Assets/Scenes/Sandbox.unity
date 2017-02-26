@@ -316,7 +316,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camera: {fileID: 1038578637}
   target: {fileID: 1744529892}
-  cameraDistance: 12
+  cameraDistance: 5
   cameraDirection: {x: -30, y: 0, z: 0}
   targetAnchor: {x: 0, y: 0.5, z: 0}
   minimumDistance: 3
