@@ -7,31 +7,29 @@ public class CharacterLogic : MonoBehaviour
     [HideInInspector]
     public CharacterController controller;
 
-    public StateMachine stateMachine;
-    public StandingState standingState;
-    public MovingState movingState;
+    [HideInInspector]
+    public Animator animator;
+
+    private readonly int HashMoving = Animator.StringToHash("Moving");
+    private readonly int HashMovementX = Animator.StringToHash("Movement X");
+    private readonly int HashMovementZ = Animator.StringToHash("Movement Z");
 
     private void Start()
     {
         this.controller = GetComponent<CharacterController>();
-
-        this.stateMachine = new StateMachine();
-        this.standingState = new StandingState(this);
-        this.movingState = new MovingState(this);
-
-        // Change to the standing state by default.
-        this.stateMachine.ChangeState(this.standingState);
+        this.animator = GetComponent<Animator>();
     }
 
-    public void HandleMessage<Type>(Type message)
+    public void Move(Vector3 direction)
     {
-        this.stateMachine.HandleMessage(message);
+        // Set character's animator parameters.
+        this.animator.SetBool(HashMoving, direction != Vector3.zero);
+        this.animator.SetFloat(this.HashMovementX, direction.x, 0.15f, Time.fixedDeltaTime);
+        this.animator.SetFloat(this.HashMovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
     }
 
     private void FixedUpdate()
     {
-        this.stateMachine.Update();
-
         // Apply gravity to the character controller.
         this.controller.Move(Physics.gravity * Time.fixedDeltaTime);
     }

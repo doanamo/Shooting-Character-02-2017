@@ -6,7 +6,7 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterLogic character;
 
-    void FixedUpdate()
+    void Update()
     {
         // Create a movement vector from the input.
         // Todo: Implement smooth direction change.
@@ -15,12 +15,7 @@ public class PlayerController : MonoBehaviour
         movementDirection.z = Input.GetAxis("Vertical");
         movementDirection.Normalize();
 
-        // Send a character move command.
-        if(movementDirection != Vector3.zero)
-        {
-            MoveCommand command = new MoveCommand();
-            command.direction = movementDirection;
-            this.character.HandleMessage(command);
-        }
+        // Move the controlled character.
+        this.character.Move(movementDirection);
     }
 }
