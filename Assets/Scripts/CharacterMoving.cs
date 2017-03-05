@@ -9,9 +9,6 @@ public class CharacterMoving : StateMachineBehaviour
 
     override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Apply built in root motion.
-        animator.ApplyBuiltinRootMotion();
-
         // Apply rotation based on movement direction.
         Vector3 direction = new Vector3(animator.GetFloat(HashMovementX), 0.0f, animator.GetFloat(HashMovementZ));
 
@@ -19,5 +16,8 @@ public class CharacterMoving : StateMachineBehaviour
         {
             animator.transform.rotation = Quaternion.LookRotation(direction);
         }
+
+        // Apply built in root motion.
+        animator.ApplyBuiltinRootMotion();
     }
 }
