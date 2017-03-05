@@ -14,6 +14,10 @@ public class CharacterMoving : StateMachineBehaviour
 
         // Apply rotation based on movement direction.
         Vector3 direction = new Vector3(animator.GetFloat(HashMovementX), 0.0f, animator.GetFloat(HashMovementZ));
-        animator.transform.rotation = Quaternion.LookRotation(direction);
+
+        if(direction != Vector3.zero)
+        {
+            animator.transform.rotation = Quaternion.LookRotation(direction);
+        }
     }
 }
