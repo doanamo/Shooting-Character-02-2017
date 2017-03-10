@@ -31,6 +31,6 @@ public class CharacterLogic : MonoBehaviour
     private void FixedUpdate()
     {
         // Apply gravity to the character controller.
-        this.controller.Move(Physics.gravity * 0.2f * Time.fixedDeltaTime);
+        this.controller.Move(Physics.gravity * 0.1f * Time.fixedDeltaTime);
     }
 }
