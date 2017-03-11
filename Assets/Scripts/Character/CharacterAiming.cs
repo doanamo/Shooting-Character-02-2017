@@ -16,8 +16,5 @@ public class CharacterAiming : StateMachineBehaviour
         {
             animator.transform.rotation = Quaternion.LookRotation(direction);
         }
-
-        // Apply built in root motion.
-        animator.ApplyBuiltinRootMotion();
     }
 }
