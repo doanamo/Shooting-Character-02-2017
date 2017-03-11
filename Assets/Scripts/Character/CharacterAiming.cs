@@ -17,4 +17,17 @@ public class CharacterAiming : StateMachineBehaviour
             animator.transform.rotation = Quaternion.LookRotation(direction);
         }
     }
+
+    override public void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        // Create a look at extension in front of the character.
+        // Initial vector needs tweaking in order to make a particular animation aim in a correct direction.
+        Vector3 lookAtExtension = new Vector3(0.2f, 1.15f, 1.0f);
+        lookAtExtension = animator.transform.rotation * lookAtExtension;
+        lookAtExtension = lookAtExtension + animator.transform.position;
+
+        // Set inverse kinematic weight and position.
+        animator.SetLookAtWeight(1.0f, 1.0f, 0.9f, 1.0f, 1.0f);
+        animator.SetLookAtPosition(lookAtExtension);
+    }
 }
