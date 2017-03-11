@@ -36,8 +36,8 @@ public class CharacterLogic : MonoBehaviour
     {
         // Set character's animator parameters.
         this.animator.SetBool(this.HashAiming, direction != Vector3.zero);
-        this.animator.SetFloat(this.HashAimingX, direction.x, 0.0f, Time.fixedDeltaTime);
-        this.animator.SetFloat(this.HashAimingZ, direction.z, 0.0f, Time.fixedDeltaTime);
+        this.animator.SetFloat(this.HashAimingX, direction.x, 0.1f, Time.fixedDeltaTime);
+        this.animator.SetFloat(this.HashAimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
     }
 
     private void FixedUpdate()
