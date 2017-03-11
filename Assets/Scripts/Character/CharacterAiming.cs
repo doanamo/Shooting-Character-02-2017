@@ -12,10 +12,7 @@ public class CharacterAiming : StateMachineBehaviour
     {
         // Set smooth weight transition.
         animator.SetFloat(this.HashLookWeight, 1.0f, 0.15f, Time.deltaTime);
-    }
 
-    public override void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    {
         // Apply rotation based on aiming direction.
         Vector3 direction = new Vector3(animator.GetFloat(HashAimingX), 0.0f, animator.GetFloat(HashAimingZ));
 

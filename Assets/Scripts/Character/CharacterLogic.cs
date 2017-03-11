@@ -11,6 +11,7 @@ public class CharacterLogic : MonoBehaviour
     public Animator animator;
 
     private readonly int HashMoving = Animator.StringToHash("Moving");
+    private readonly int HashRunning = Animator.StringToHash("Running");
     private readonly int HashMovementX = Animator.StringToHash("Movement X");
     private readonly int HashMovementZ = Animator.StringToHash("Movement Z");
 
@@ -32,6 +33,12 @@ public class CharacterLogic : MonoBehaviour
         this.animator.SetFloat(this.HashMovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
     }
 
+    public void Run()
+    {
+        // Set character's animator parameters.
+        this.animator.SetBool(this.HashRunning, true);
+    }
+
     public void Aim(Vector3 direction)
     {
         // Set character's animator parameters.
@@ -50,6 +57,7 @@ public class CharacterLogic : MonoBehaviour
     {
         // Reset character's animator paremeters.
         this.animator.SetBool(this.HashMoving, false);
+        this.animator.SetBool(this.HashRunning, false);
         this.animator.SetBool(this.HashAiming, false);
     }
 }

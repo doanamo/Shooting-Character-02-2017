@@ -20,6 +20,13 @@ public class PlayerController : MonoBehaviour
             this.character.Move(movementDirection);
         }
 
+        // Handle keyboard input.
+        if(Input.GetKey(KeyCode.LeftShift))
+        {
+            // Run with the controlled character.
+            this.character.Run();
+        }
+
         // Handle right mouse button input for character aiming.
         if(Input.GetMouseButton(1))
         {
