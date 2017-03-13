@@ -9,7 +9,7 @@ public class CharacterRelaxed : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Set smooth weight transition.
-        animator.SetFloat(this.HashLookWeight, 0.0f, 0.4f, Time.deltaTime);
+        animator.SetFloat(this.HashLookWeight, 0.0f, 0.2f, Time.deltaTime);
     }
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
