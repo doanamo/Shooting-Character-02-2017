@@ -10,15 +10,6 @@ public class CharacterLogic : MonoBehaviour
     [HideInInspector]
     public Animator animator;
 
-    private readonly int HashMoving = Animator.StringToHash("Moving");
-    private readonly int HashRunning = Animator.StringToHash("Running");
-    private readonly int HashMovementX = Animator.StringToHash("Movement X");
-    private readonly int HashMovementZ = Animator.StringToHash("Movement Z");
-
-    private readonly int HashAiming = Animator.StringToHash("Aiming");
-    private readonly int HashAimingX = Animator.StringToHash("Aiming X");
-    private readonly int HashAimingZ = Animator.StringToHash("Aiming Z");
-
     private void Start()
     {
         this.controller = GetComponent<CharacterController>();
@@ -28,23 +19,23 @@ public class CharacterLogic : MonoBehaviour
     public void Move(Vector3 direction)
     {
         // Set character's animator parameters.
-        this.animator.SetBool(this.HashMoving, direction != Vector3.zero);
-        this.animator.SetFloat(this.HashMovementX, direction.x, 0.15f, Time.fixedDeltaTime);
-        this.animator.SetFloat(this.HashMovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
+        this.animator.SetBool(CharacterHash.Moving, direction != Vector3.zero);
+        this.animator.SetFloat(CharacterHash.MovementX, direction.x, 0.15f, Time.fixedDeltaTime);
+        this.animator.SetFloat(CharacterHash.MovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
     }
 
     public void Run()
     {
         // Set character's animator parameters.
-        this.animator.SetBool(this.HashRunning, true);
+        this.animator.SetBool(CharacterHash.Running, true);
     }
 
     public void Aim(Vector3 direction)
     {
         // Set character's animator parameters.
-        this.animator.SetBool(this.HashAiming, direction != Vector3.zero);
-        this.animator.SetFloat(this.HashAimingX, direction.x, 0.1f, Time.fixedDeltaTime);
-        this.animator.SetFloat(this.HashAimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
+        this.animator.SetBool(CharacterHash.Aiming, direction != Vector3.zero);
+        this.animator.SetFloat(CharacterHash.AimingX, direction.x, 0.1f, Time.fixedDeltaTime);
+        this.animator.SetFloat(CharacterHash.AimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
     }
 
     private void FixedUpdate()
@@ -56,8 +47,8 @@ public class CharacterLogic : MonoBehaviour
     public void LateUpdate()
     {
         // Reset character's animator paremeters.
-        this.animator.SetBool(this.HashMoving, false);
-        this.animator.SetBool(this.HashRunning, false);
-        this.animator.SetBool(this.HashAiming, false);
+        this.animator.SetBool(CharacterHash.Moving, false);
+        this.animator.SetBool(CharacterHash.Running, false);
+        this.animator.SetBool(CharacterHash.Aiming, false);
     }
 }
