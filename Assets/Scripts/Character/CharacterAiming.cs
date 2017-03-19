@@ -9,12 +9,18 @@ public class CharacterAiming : StateMachineBehaviour
         // Set smooth weight transition.
         animator.SetFloat(CharacterHash.LookWeight, 1.0f, 0.15f, Time.deltaTime);
 
-        // Apply rotation based on aiming direction.
-        Vector3 direction = new Vector3(animator.GetFloat(CharacterHash.AimingX), 0.0f, animator.GetFloat(CharacterHash.AimingZ));
+        // Calculate desired direction and rotation factor.
+        Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHash.AimingX), 0.0f, animator.GetFloat(CharacterHash.AimingZ));
 
-        if(direction != Vector3.zero)
+        float degreesDifference = Vector3.Angle(animator.transform.forward, desiredDirection);
+        float rotationFactor = 10.0f * Mathf.Clamp(degreesDifference / 40.0f, 0.1f, 1.0f);
+
+        // Apply rotation based on calculated direction.
+        Vector3 calculatedDirection = Vector3.RotateTowards(animator.transform.forward, desiredDirection, rotationFactor * Time.deltaTime, 0.0f);
+
+        if(calculatedDirection != Vector3.zero)
         {
-            animator.transform.rotation = Quaternion.LookRotation(direction);
+            animator.transform.rotation = Quaternion.LookRotation(calculatedDirection);
         }
     }
 
