@@ -23,9 +23,18 @@ public class CharacterAiming : StateMachineBehaviour
             animator.transform.rotation = Quaternion.LookRotation(calculatedDirection);
         }
 
+        // Calculate rotation for strafing direction in the character's local space.
+        Vector3 cameraForward = new Vector3(Camera.main.transform.forward.x, 0.0f, Camera.main.transform.forward.z).normalized;
+        Vector3 characterForward = new Vector3(animator.transform.forward.x, 0.0f, animator.transform.forward.z).normalized;
+
+        Quaternion rotationToLocal = Quaternion.FromToRotation(characterForward, cameraForward);
+
         // Set strafing paremeter for movement direction relative to camera.
-        animator.SetFloat(CharacterHash.StrafingX, animator.GetFloat(CharacterHash.MovementX), 0.15f, Time.deltaTime);
-        animator.SetFloat(CharacterHash.StrafingZ, animator.GetFloat(CharacterHash.MovementZ), 0.15f, Time.deltaTime);
+        Vector3 movementDirection = new Vector3(animator.GetFloat(CharacterHash.MovementX), 0.0f, animator.GetFloat(CharacterHash.MovementZ));
+        Vector3 strafingDirection = rotationToLocal * movementDirection;
+
+        animator.SetFloat(CharacterHash.StrafingX, strafingDirection.x, 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHash.StrafingZ, strafingDirection.z, 0.15f, Time.deltaTime);
     }
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
