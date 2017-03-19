@@ -141,7 +141,7 @@ ModelImporter:
     400130: mixamorig:Spine
     400132: mixamorig:Spine1
     400134: mixamorig:Spine2
-    7400000: WalkForwardLeft
+    7400000: RifleWalkForwardLeft
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -168,7 +168,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: WalkForwardLeft
+      name: RifleWalkForwardLeft
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 30

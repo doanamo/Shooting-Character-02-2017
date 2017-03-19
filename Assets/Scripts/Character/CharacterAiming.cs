@@ -22,6 +22,10 @@ public class CharacterAiming : StateMachineBehaviour
         {
             animator.transform.rotation = Quaternion.LookRotation(calculatedDirection);
         }
+
+        // Set strafing paremeter for movement direction relative to camera.
+        animator.SetFloat(CharacterHash.StrafingX, animator.GetFloat(CharacterHash.MovementX), 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHash.StrafingZ, animator.GetFloat(CharacterHash.MovementZ), 0.15f, Time.deltaTime);
     }
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
