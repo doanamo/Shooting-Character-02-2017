@@ -41,7 +41,7 @@ public class CharacterAiming : StateMachineBehaviour
     {
         // Create a look at extension in front of the character.
         // Initial vector needs tweaking in order to make a particular animation aim in a correct direction.
-        Vector3 lookAtExtension = new Vector3(0.2f, 1.15f, 1.0f);
+        Vector3 lookAtExtension = new Vector3(0.0f, 1.15f, 1.0f);
         lookAtExtension = animator.transform.rotation * lookAtExtension;
         lookAtExtension = lookAtExtension + animator.transform.position;
 
