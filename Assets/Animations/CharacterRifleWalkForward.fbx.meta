@@ -171,7 +171,7 @@ ModelImporter:
       name: RifleWalkForward
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 43
+      lastFrame: 30
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
