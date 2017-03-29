@@ -13,7 +13,7 @@ public class CharacterAiming : StateMachineBehaviour
         Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHash.AimingX), 0.0f, animator.GetFloat(CharacterHash.AimingZ));
 
         float degreesDifference = Vector3.Angle(animator.transform.forward, desiredDirection);
-        float rotationFactor = 10.0f * Mathf.Clamp(degreesDifference / 40.0f, 0.1f, 1.0f);
+        float rotationFactor = 6.0f * Mathf.Clamp(degreesDifference / 40.0f, 0.1f, 1.0f);
 
         // Apply rotation based on calculated direction.
         Vector3 calculatedDirection = Vector3.RotateTowards(animator.transform.forward, desiredDirection, rotationFactor * Time.deltaTime, 0.0f);
