@@ -39,6 +39,7 @@ public class CharacterAiming : StateMachineBehaviour
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
+        /*
         // Create a look at extension in front of the character.
         // Initial vector needs tweaking in order to make a particular animation aim in a correct direction.
         Vector3 lookAtExtension = new Vector3(0.0f, 1.15f, 1.0f);
@@ -49,5 +50,6 @@ public class CharacterAiming : StateMachineBehaviour
         float lookWeight = animator.GetFloat(CharacterHash.LookWeight);
         animator.SetLookAtWeight(lookWeight, 1.0f, 0.25f, 1.0f, 1.0f);
         animator.SetLookAtPosition(lookAtExtension);
+        */
     }
 }

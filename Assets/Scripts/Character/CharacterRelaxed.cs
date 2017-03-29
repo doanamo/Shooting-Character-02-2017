@@ -12,8 +12,10 @@ public class CharacterRelaxed : StateMachineBehaviour
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
+        /*
         // Set inverse kinematic weight and position.
         float lookWeight = animator.GetFloat(CharacterHash.LookWeight);
         animator.SetLookAtWeight(lookWeight, 1.0f, 0.25f, 1.0f, 1.0f);
+        */
     }
 }
