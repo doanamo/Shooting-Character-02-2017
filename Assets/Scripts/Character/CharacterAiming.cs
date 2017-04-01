@@ -7,10 +7,10 @@ public class CharacterAiming : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Set smooth weight transition.
-        animator.SetFloat(CharacterHash.LookWeight, 1.0f, 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHashes.AimingWeight, 1.0f, 0.15f, Time.deltaTime);
 
         // Calculate desired direction and rotation factor.
-        Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHash.AimingX), 0.0f, animator.GetFloat(CharacterHash.AimingZ));
+        Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHashes.AimingX), 0.0f, animator.GetFloat(CharacterHashes.AimingZ));
 
         float degreesDifference = Vector3.Angle(animator.transform.forward, desiredDirection);
         float rotationFactor = 6.0f * Mathf.Clamp(degreesDifference / 40.0f, 0.1f, 1.0f);
@@ -30,26 +30,20 @@ public class CharacterAiming : StateMachineBehaviour
         Quaternion rotationToLocal = Quaternion.FromToRotation(characterForward, cameraForward);
 
         // Set strafing paremeter for movement direction relative to camera.
-        Vector3 movementDirection = new Vector3(animator.GetFloat(CharacterHash.MovementX), 0.0f, animator.GetFloat(CharacterHash.MovementZ));
+        Vector3 movementDirection = new Vector3(animator.GetFloat(CharacterHashes.MovementX), 0.0f, animator.GetFloat(CharacterHashes.MovementZ));
         Vector3 strafingDirection = rotationToLocal * movementDirection;
 
-        animator.SetFloat(CharacterHash.StrafingX, strafingDirection.x, 0.15f, Time.deltaTime);
-        animator.SetFloat(CharacterHash.StrafingZ, strafingDirection.z, 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHashes.StrafingX, strafingDirection.x, 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHashes.StrafingZ, strafingDirection.z, 0.15f, Time.deltaTime);
     }
 
     public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
     {
-        /*
-        // Create a look at extension in front of the character.
-        // Initial vector needs tweaking in order to make a particular animation aim in a correct direction.
-        Vector3 lookAtExtension = new Vector3(0.0f, 1.15f, 1.0f);
-        lookAtExtension = animator.transform.rotation * lookAtExtension;
-        lookAtExtension = lookAtExtension + animator.transform.position;
+        // Setup inverse kinematic for hands.
+        float aimingWeight = animator.GetFloat(CharacterHashes.AimingWeight);
 
-        // Set inverse kinematic weight and position.
-        float lookWeight = animator.GetFloat(CharacterHash.LookWeight);
-        animator.SetLookAtWeight(lookWeight, 1.0f, 0.25f, 1.0f, 1.0f);
-        animator.SetLookAtPosition(lookAtExtension);
-        */
+        Quaternion rightHandRotation = animator.transform.rotation * Quaternion.Euler(0.0f, 0.0f, -90.0f);
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, aimingWeight);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandRotation);
     }
 }

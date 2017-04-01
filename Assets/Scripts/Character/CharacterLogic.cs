@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CharacterLogic : MonoBehaviour
 {
+    public GameObject weapon;
+
     [HideInInspector]
     public CharacterController controller;
 
@@ -19,23 +21,23 @@ public class CharacterLogic : MonoBehaviour
     public void Move(Vector3 direction)
     {
         // Set character's animator parameters.
-        this.animator.SetBool(CharacterHash.Moving, direction != Vector3.zero);
-        this.animator.SetFloat(CharacterHash.MovementX, direction.x, 0.15f, Time.fixedDeltaTime);
-        this.animator.SetFloat(CharacterHash.MovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
+        this.animator.SetBool(CharacterHashes.Moving, direction != Vector3.zero);
+        this.animator.SetFloat(CharacterHashes.MovementX, direction.x, 0.15f, Time.fixedDeltaTime);
+        this.animator.SetFloat(CharacterHashes.MovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
     }
 
     public void Run()
     {
         // Set character's animator parameters.
-        this.animator.SetBool(CharacterHash.Running, true);
+        this.animator.SetBool(CharacterHashes.Running, true);
     }
 
     public void Aim(Vector3 direction)
     {
         // Set character's animator parameters.
-        this.animator.SetBool(CharacterHash.Aiming, direction != Vector3.zero);
-        this.animator.SetFloat(CharacterHash.AimingX, direction.x, 0.1f, Time.fixedDeltaTime);
-        this.animator.SetFloat(CharacterHash.AimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
+        this.animator.SetBool(CharacterHashes.Aiming, direction != Vector3.zero);
+        this.animator.SetFloat(CharacterHashes.AimingX, direction.x, 0.1f, Time.fixedDeltaTime);
+        this.animator.SetFloat(CharacterHashes.AimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
     }
 
     private void FixedUpdate()
@@ -47,8 +49,8 @@ public class CharacterLogic : MonoBehaviour
     public void LateUpdate()
     {
         // Reset character's animator paremeters.
-        this.animator.SetBool(CharacterHash.Moving, false);
-        this.animator.SetBool(CharacterHash.Running, false);
-        this.animator.SetBool(CharacterHash.Aiming, false);
+        this.animator.SetBool(CharacterHashes.Moving, false);
+        this.animator.SetBool(CharacterHashes.Running, false);
+        this.animator.SetBool(CharacterHashes.Aiming, false);
     }
 }
