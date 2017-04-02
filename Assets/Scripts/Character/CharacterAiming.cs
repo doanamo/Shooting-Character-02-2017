@@ -36,14 +36,4 @@ public class CharacterAiming : StateMachineBehaviour
         animator.SetFloat(CharacterHashes.StrafingX, strafingDirection.x, 0.15f, Time.deltaTime);
         animator.SetFloat(CharacterHashes.StrafingZ, strafingDirection.z, 0.15f, Time.deltaTime);
     }
-
-    public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
-    {
-        // Setup inverse kinematic for hands.
-        float aimingWeight = animator.GetFloat(CharacterHashes.AimingWeight);
-
-        Quaternion rightHandRotation = animator.transform.rotation * Quaternion.Euler(0.0f, 0.0f, -90.0f);
-        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, aimingWeight);
-        animator.SetIKRotation(AvatarIKGoal.RightHand, rightHandRotation);
-    }
 }

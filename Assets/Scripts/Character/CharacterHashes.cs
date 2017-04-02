@@ -15,4 +15,6 @@ class CharacterHashes
     public static readonly int AimingX = Animator.StringToHash("Aiming X");
     public static readonly int AimingZ = Animator.StringToHash("Aiming Z");
     public static readonly int AimingWeight = Animator.StringToHash("Aiming Weight");
+
+    public static readonly int LeftHandWeight = Animator.StringToHash("Left Hand Weight");
 }
