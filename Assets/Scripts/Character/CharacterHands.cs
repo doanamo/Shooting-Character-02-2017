@@ -29,9 +29,7 @@ public class CharacterHands : StateMachineBehaviour
             animator.SetIKPositionWeight(AvatarIKGoal.LeftHand, leftHandWeight);
             animator.SetIKPosition(AvatarIKGoal.LeftHand, this.leftHandGrip.transform.position);
 
-            float aimingWeight = animator.GetFloat(CharacterHashes.AimingWeight);
-
-            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, aimingWeight);
+            animator.SetIKRotationWeight(AvatarIKGoal.LeftHand, leftHandWeight);
             animator.SetIKRotation(AvatarIKGoal.LeftHand, this.leftHandGrip.transform.rotation * Quaternion.Euler(0.0f, -90.0f, 180.0f));
         }
     }
