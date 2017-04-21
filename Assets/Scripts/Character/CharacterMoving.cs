@@ -6,6 +6,12 @@ public class CharacterMoving : StateMachineBehaviour
 {
     override public void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
+        // Hold the right hand on the weapon if running.
+        if(animator.GetBool(CharacterHashes.Running))
+        {
+            animator.SetFloat(CharacterHashes.LeftHandWeight, 0.8f, 0.1f, Time.deltaTime);
+        }
+
         // Calculate desired direction and rotation factor.
         Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHashes.MovementX), 0.0f, animator.GetFloat(CharacterHashes.MovementZ));
 

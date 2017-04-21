@@ -8,6 +8,6 @@ public class CharacterRelaxed : StateMachineBehaviour
     {
         // Apply smooth weight transition.
         animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.1f, Time.deltaTime);
-        animator.SetFloat(CharacterHashes.LeftHandWeight, 0.4f, 0.1f, Time.deltaTime);
+        animator.SetFloat(CharacterHashes.LeftHandWeight, 0.0f, 0.1f, Time.deltaTime);
     }
 }
