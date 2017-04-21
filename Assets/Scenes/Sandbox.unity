@@ -1261,7 +1261,7 @@ MonoBehaviour:
   cameraDistance: 5
   cameraDirection: {x: -30, y: 0, z: 0}
   targetAnchor: {x: 0, y: 0.5, z: 0}
-  minimumDistance: 3
+  minimumDistance: 2.4
   maximumDistance: 20
 --- !u!114 &548294580
 MonoBehaviour:
