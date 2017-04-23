@@ -8,32 +8,19 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // Handle directional input for character movement.
+        // Calculate desired movement direction.
         Vector3 movementDirection = Vector3.zero;
         movementDirection.x = Input.GetAxis("Horizontal");
         movementDirection.z = Input.GetAxis("Vertical");
         movementDirection.Normalize();
 
-        if(movementDirection != Vector3.zero)
-        {
-            // Move with the controlled character.
-            this.character.Move(movementDirection);
-        }
+        // Calculate desired aiming direction.
+        Vector3 aimingDirection = Vector3.zero;
 
-        // Handle keyboard input.
-        if(Input.GetKey(KeyCode.LeftShift))
-        {
-            // Run with the controlled character.
-            this.character.Run();
-        }
-
-        // Handle right mouse button input for character aiming.
         if(Input.GetMouseButton(1))
         {
-            // Create a plane positioned at the character's feet.
+            // Create a plane positioned at the character's feet and cast a ray onto it.
             Plane plane = new Plane(new Vector3(0.0f, 1.0f, 0.0f), this.character.transform.position);
-
-            // Create a ray from the screen to world.
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
             // Cast the ray against the plane.
@@ -42,13 +29,17 @@ public class PlayerController : MonoBehaviour
             if(plane.Raycast(ray, out rayDistance))
             {
                 // Calculate ray direction from character's position.
-                Vector3 position = ray.GetPoint(rayDistance);
-                Vector3 direction = position - this.character.transform.position;
-                direction.Normalize();
-
-                // Move with the controlled character.
-                this.character.Aim(direction);
+                aimingDirection = (ray.GetPoint(rayDistance) - this.character.transform.position).normalized;
             }
         }
+
+        // Handle character's running.
+        this.character.Move(movementDirection != Vector3.zero, movementDirection);
+
+        // Handle character's running.
+        this.character.Run(Input.GetKey(KeyCode.LeftShift));
+
+        // Handle character's aiming.
+        this.character.Aim(aimingDirection != Vector3.zero, aimingDirection);
     }
 }
