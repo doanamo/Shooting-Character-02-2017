@@ -41,5 +41,8 @@ public class PlayerController : MonoBehaviour
 
         // Handle character's aiming.
         this.character.Aim(aimingDirection != Vector3.zero, aimingDirection);
+
+        // Handle character's shooting.
+        this.character.Shoot(Input.GetMouseButton(0));
     }
 }

@@ -45,6 +45,11 @@ public class CharacterLogic : MonoBehaviour
         this.aimingDirection = direction;
     }
 
+    public void Shoot(bool toggle)
+    {
+        this.animator.SetBool(CharacterHashes.Shooting, toggle);
+    }
+
     private void Update()
     {
         // Update movement direction parameters.
