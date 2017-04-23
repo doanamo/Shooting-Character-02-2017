@@ -12,6 +12,8 @@ public class CharacterLogic : MonoBehaviour
     [HideInInspector]
     public Animator animator;
 
+    private Vector3 movementDirection;
+
     private void Start()
     {
         this.controller = GetComponent<CharacterController>();
@@ -20,10 +22,11 @@ public class CharacterLogic : MonoBehaviour
 
     public void Move(Vector3 direction)
     {
-        // Set character's animator parameters.
+        // Set state machine parameter.
         this.animator.SetBool(CharacterHashes.Moving, direction != Vector3.zero);
-        this.animator.SetFloat(CharacterHashes.MovementX, direction.x, 0.15f, Time.fixedDeltaTime);
-        this.animator.SetFloat(CharacterHashes.MovementZ, direction.z, 0.15f, Time.fixedDeltaTime);
+
+        // Save desired movement direction to update later.
+        this.movementDirection = direction;
     }
 
     public void Run()
@@ -40,10 +43,27 @@ public class CharacterLogic : MonoBehaviour
         this.animator.SetFloat(CharacterHashes.AimingZ, direction.z, 0.1f, Time.fixedDeltaTime);
     }
 
+    private void Update()
+    {
+        // Update movement direction parameters.
+        if (this.animator.GetBool(CharacterHashes.Moving))
+        {
+            this.animator.SetFloat(CharacterHashes.MovementX, this.movementDirection.x, 0.15f, Time.deltaTime);
+            this.animator.SetFloat(CharacterHashes.MovementZ, this.movementDirection.z, 0.15f, Time.deltaTime);
+        }
+        else
+        {
+            this.animator.SetFloat(CharacterHashes.MovementX, 0.0f, 0.15f, Time.deltaTime);
+            this.animator.SetFloat(CharacterHashes.MovementZ, 0.0f, 0.15f, Time.deltaTime);
+        }
+    }
+
     private void FixedUpdate()
     {
         // Apply gravity to the character controller.
         this.controller.Move(Physics.gravity * 0.1f * Time.fixedDeltaTime);
+
+        
     }
 
     public void LateUpdate()
