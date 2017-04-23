@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class CharacterRelaxed : StateMachineBehaviour
 {
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    private CharacterLogic character;
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Apply smooth weight transition.
-        if(animator.IsInTransition(layerIndex) && animator.GetCurrentAnimatorStateInfo(layerIndex).fullPathHash != stateInfo.fullPathHash)
+        if(this.character == null)
         {
-            animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.15f, Time.fixedDeltaTime);
-            animator.SetFloat(CharacterHashes.LeftHandWeight, 0.0f, 0.1f, Time.deltaTime);
+            this.character = animator.GetComponent<CharacterLogic>();
         }
+
+        this.character.desiredAimingWeight = 0.0f;
     }
 }

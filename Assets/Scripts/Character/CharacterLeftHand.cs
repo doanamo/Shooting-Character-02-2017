@@ -4,15 +4,27 @@ using UnityEngine;
 
 public class CharacterLeftHand : StateMachineBehaviour
 {
+    private CharacterLogic character;
     private GameObject leftHandGrip;
+
+    public float desiredWeight = 0.0f;
 
     public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        CharacterLogic character = animator.GetComponent<CharacterLogic>();
-        this.leftHandGrip = character.weapon.transform.Find("LeftHandGrip").gameObject;
+        if(this.character == null)
+        {
+            this.character = animator.GetComponent<CharacterLogic>();
+        }
+
+        if(this.leftHandGrip == null)
+        {
+            this.leftHandGrip = this.character.weapon.transform.Find("LeftHandGrip").gameObject;
+        }
+
+        this.character.desiredLeftHandWeight = this.desiredWeight;
     }
 
-    public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    public override void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         float leftHandWeight = animator.GetFloat(CharacterHashes.LeftHandWeight);
 

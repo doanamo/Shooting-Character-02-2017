@@ -9,6 +9,9 @@ public class CharacterLogic : MonoBehaviour
     private Vector3 movementDirection;
     private Vector3 aimingDirection;
 
+    public float desiredAimingWeight = 0.0f;
+    public float desiredLeftHandWeight = 0.0f;
+
     public CharacterController controller
     {
         get; private set;
@@ -69,6 +72,10 @@ public class CharacterLogic : MonoBehaviour
             this.animator.SetFloat(CharacterHashes.StrafingX, 0.0f, 0.1f, Time.deltaTime);
             this.animator.SetFloat(CharacterHashes.StrafingZ, 0.0f, 0.1f, Time.deltaTime);
         }
+
+        // Update animation weight parameters.
+        animator.SetFloat(CharacterHashes.AimingWeight, this.desiredAimingWeight, 0.15f, Time.deltaTime);
+        animator.SetFloat(CharacterHashes.LeftHandWeight, this.desiredLeftHandWeight, 0.1f, Time.deltaTime);
     }
 
     private void FixedUpdate()

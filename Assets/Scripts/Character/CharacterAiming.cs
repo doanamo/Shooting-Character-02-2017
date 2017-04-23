@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class CharacterAiming : StateMachineBehaviour
 {
-    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    private CharacterLogic character;
+
+    public override void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        // Set smooth weight transition.
-        if(!animator.IsInTransition(layerIndex) || (animator.IsInTransition(layerIndex)
-            && animator.GetCurrentAnimatorStateInfo(layerIndex).fullPathHash != stateInfo.fullPathHash))
+        if(this.character == null)
         {
-            animator.SetFloat(CharacterHashes.AimingWeight, 1.0f, 0.4f, Time.deltaTime);
-            animator.SetFloat(CharacterHashes.LeftHandWeight, 0.8f, 0.04f, Time.deltaTime);
+            this.character = animator.GetComponent<CharacterLogic>();
         }
 
+        this.character.desiredAimingWeight = 1.0f;
+    }
+
+    public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    {
         // Calculate desired direction and rotation factor.
         Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHashes.AimingX), 0.0f, animator.GetFloat(CharacterHashes.AimingZ));
 
@@ -40,5 +44,13 @@ public class CharacterAiming : StateMachineBehaviour
 
         animator.SetFloat(CharacterHashes.StrafingX, strafingDirection.x, 0.15f, Time.deltaTime);
         animator.SetFloat(CharacterHashes.StrafingZ, strafingDirection.z, 0.15f, Time.deltaTime);
+    }
+
+    public override void OnStateIK(Animator animator, AnimatorStateInfo animatorStateInfo, int layerIndex)
+    {
+        float aimingWeight = animator.GetFloat(CharacterHashes.AimingWeight);
+
+        animator.SetIKRotationWeight(AvatarIKGoal.RightHand, aimingWeight);
+        animator.SetIKRotation(AvatarIKGoal.RightHand, animator.transform.rotation * Quaternion.Euler(0.0f, 0.0f, -90.0f));
     }
 }
