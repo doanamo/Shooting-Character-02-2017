@@ -5,14 +5,17 @@ using UnityEngine;
 public class CharacterLogic : MonoBehaviour
 {
     public GameObject weapon;
-
-    [HideInInspector]
-    public CharacterController controller;
-
-    [HideInInspector]
-    public Animator animator;
-
     private Vector3 movementDirection;
+
+    public CharacterController controller
+    {
+        get; private set;
+    }
+
+    public Animator animator
+    {
+        get; private set;
+    }
 
     private void Start()
     {
@@ -62,8 +65,6 @@ public class CharacterLogic : MonoBehaviour
     {
         // Apply gravity to the character controller.
         this.controller.Move(Physics.gravity * 0.1f * Time.fixedDeltaTime);
-
-        
     }
 
     public void LateUpdate()
