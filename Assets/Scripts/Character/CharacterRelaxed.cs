@@ -7,7 +7,10 @@ public class CharacterRelaxed : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Apply smooth weight transition.
-        animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.1f, Time.deltaTime);
-        animator.SetFloat(CharacterHashes.LeftHandWeight, 0.0f, 0.1f, Time.deltaTime);
+        if(animator.IsInTransition(layerIndex) && animator.GetCurrentAnimatorStateInfo(layerIndex).fullPathHash != stateInfo.fullPathHash)
+        {
+            animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.15f, Time.fixedDeltaTime);
+            animator.SetFloat(CharacterHashes.LeftHandWeight, 0.0f, 0.1f, Time.deltaTime);
+        }
     }
 }

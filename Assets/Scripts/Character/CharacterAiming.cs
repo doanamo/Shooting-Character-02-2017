@@ -7,8 +7,12 @@ public class CharacterAiming : StateMachineBehaviour
     public override void OnStateUpdate(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         // Set smooth weight transition.
-        animator.SetFloat(CharacterHashes.AimingWeight, 1.0f, 0.15f, Time.deltaTime);
-        animator.SetFloat(CharacterHashes.LeftHandWeight, 0.8f, 0.1f, Time.deltaTime);
+        if(!animator.IsInTransition(layerIndex) || (animator.IsInTransition(layerIndex)
+            && animator.GetCurrentAnimatorStateInfo(layerIndex).fullPathHash != stateInfo.fullPathHash))
+        {
+            animator.SetFloat(CharacterHashes.AimingWeight, 1.0f, 0.4f, Time.deltaTime);
+            animator.SetFloat(CharacterHashes.LeftHandWeight, 0.8f, 0.04f, Time.deltaTime);
+        }
 
         // Calculate desired direction and rotation factor.
         Vector3 desiredDirection = new Vector3(animator.GetFloat(CharacterHashes.AimingX), 0.0f, animator.GetFloat(CharacterHashes.AimingZ));
