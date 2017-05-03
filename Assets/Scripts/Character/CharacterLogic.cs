@@ -45,9 +45,14 @@ public class CharacterLogic : MonoBehaviour
         this.aimingDirection = direction;
     }
 
-    public void Shoot(bool toggle)
+    public void Shoot(bool toggle, Vector3 direction)
     {
         this.animator.SetBool(CharacterHashes.Shooting, toggle);
+
+        if(toggle)
+        {
+            this.Aim(toggle, direction);
+        }
     }
 
     private void Update()

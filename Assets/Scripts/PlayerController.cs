@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
         // Calculate desired aiming direction.
         Vector3 aimingDirection = Vector3.zero;
 
-        if(Input.GetMouseButton(1))
         {
             // Create a plane positioned at the character's feet and cast a ray onto it.
             Plane plane = new Plane(new Vector3(0.0f, 1.0f, 0.0f), this.character.transform.position);
@@ -40,9 +39,9 @@ public class PlayerController : MonoBehaviour
         this.character.Run(Input.GetKey(KeyCode.LeftShift));
 
         // Handle character's aiming.
-        this.character.Aim(aimingDirection != Vector3.zero, aimingDirection);
+        this.character.Aim(Input.GetMouseButton(1), aimingDirection);
 
         // Handle character's shooting.
-        this.character.Shoot(Input.GetMouseButton(0));
+        this.character.Shoot(Input.GetMouseButton(0), aimingDirection);
     }
 }
