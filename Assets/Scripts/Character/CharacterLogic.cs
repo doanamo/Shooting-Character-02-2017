@@ -85,7 +85,22 @@ public class CharacterLogic : MonoBehaviour
 
         // Update aiming weight parameter.
         // Todo: Do not aim unless still or shooting, allowing strafe animations with weapon retracted.
-        animator.SetFloat(CharacterHashes.AimingWeight, this.desiredAimingWeight, 0.15f, Time.deltaTime);
+        if(this.animator.GetBool(CharacterHashes.Shooting))
+        {
+            animator.SetFloat(CharacterHashes.AimingWeight, this.desiredAimingWeight, 0.3f, Time.deltaTime);
+        }
+        else
+        {
+            if(this.animator.GetBool(CharacterHashes.Aiming))
+            {
+                animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.3f, Time.deltaTime);
+            }
+            else
+            {
+                animator.SetFloat(CharacterHashes.AimingWeight, 0.0f, 0.1f, Time.deltaTime);
+            }
+            
+        }
 
         // Update left hand weight parameter.
         animator.SetFloat(CharacterHashes.LeftHandWeight, this.desiredLeftHandWeight, 0.1f, Time.deltaTime);

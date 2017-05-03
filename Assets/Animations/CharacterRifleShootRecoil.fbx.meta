@@ -141,7 +141,7 @@ ModelImporter:
     400130: mixamorig:Spine
     400132: mixamorig:Spine1
     400134: mixamorig:Spine2
-    7400000: RifleShootMinRecoil
+    7400000: RifleShootRecoil
     9500000: //RootNode
   materials:
     importMaterials: 1
@@ -170,7 +170,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     clipAnimations:
     - serializedVersion: 16
-      name: RifleShootMinRecoil
+      name: RifleShootRecoil
       takeName: mixamo.com
       firstFrame: 0
       lastFrame: 35
