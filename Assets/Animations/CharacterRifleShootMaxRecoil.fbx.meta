@@ -173,7 +173,7 @@ ModelImporter:
       name: RifleShootMaxRecoil
       takeName: mixamo.com
       firstFrame: 0
-      lastFrame: 14
+      lastFrame: 35
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
