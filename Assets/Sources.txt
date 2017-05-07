@@ -1,0 +1,8 @@
+Placeholder Character + Animations:
+https://www.mixamo.com/store/
+
+Placeholder M4A1 Weapon:
+https://www.assetstore.unity3d.com/en/#!/content/14233
+
+Muzzle Flash:
+https://www.reddit.com/r/gamedev/comments/27lx3l/fps_game_devs_here_is_a_muzzle_flash_pack_for_you/
