@@ -55,6 +55,11 @@ public class CharacterLogic : MonoBehaviour
         }
     }
 
+    public void AnimationShoot()
+    {
+        this.weapon.GetComponent<MuzzleFlash>().Activate();
+    }
+
     private void Update()
     {
         // Update movement direction parameters.
