@@ -2,17 +2,25 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MuzzleFlash : MonoBehaviour
+public class RangedWeapon : MonoBehaviour
 {
     public GameObject muzzleFlash;
     public float duration = 0.1f;
 
-    public void Activate()
+    new private AudioSource audio;
+
+    public void Start()
     {
-        StartCoroutine(Coroutine());
+        this.audio = gameObject.GetComponent<AudioSource>();
     }
 
-    IEnumerator Coroutine()
+    public void Shoot()
+    {
+        this.audio.PlayOneShot(audio.clip);
+        StartCoroutine(MuzzleFlash());
+    }
+
+    IEnumerator MuzzleFlash()
     {
         // Set muzzle flash to be visible for a brief moment.
         this.muzzleFlash.SetActive(true);

@@ -57,7 +57,7 @@ public class CharacterLogic : MonoBehaviour
 
     public void AnimationShoot()
     {
-        this.weapon.GetComponent<MuzzleFlash>().Activate();
+        this.weapon.GetComponent<RangedWeapon>().Shoot();
     }
 
     private void Update()
