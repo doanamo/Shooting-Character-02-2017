@@ -1,0 +1,3 @@
+# Do not run GitHub language statistics on third party libraries.
+Assets/External/* linguist-vendored
+*.mask linguist-vendored
