@@ -1,6 +1,6 @@
 Shooting Character
 ====
-Top-down character locomotion and animation demo with some gameplay elements implemented such as sprinting and shooting. Implements different character's movement modes using root motion animations and utilizes inverse kinematics to properly hold/fire a weapon in a direction.
+Top-down character locomotion and animation demo with some gameplay elements implemented such as sprinting and shooting. Implements different character movement modes using root motion animations and utilizes inverse kinematics to properly handle held weapons.
 
 ![](Docs/Screenshot.jpg)
 
